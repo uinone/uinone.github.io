@@ -1,0 +1,539 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Jeaheon's Studio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Jeaheon's Studio</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="..\..\index.html">Home</a></li>
+					<li><a href="20190626.html">2019_06_26</a></li>
+					<li><a href="20190703.html">2019_07_03</a></li>
+					<li><a href="#">2019_07_08</a></li>
+					<li><a href="20190710.html">2019_07_10</a></li>
+					<li><a href="20190813.html">2019_08_13</a></li>
+					<li><a href="20190815.html">2019_08_15</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>2019_07_08 모각코 활동일지</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>오늘의 목표</h2>
+						</header>
+						<p>바텀업 관련 앱개발<br>1. 회원가입 화면 만들기(FireBase Authentication 사용)<br>
+							2. 회원가입 관련 데이터 데이터베이스로 보내기<br></p>
+						<hr>
+						<header>
+							<h2>Login.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">package com.example.waily;
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
+import android.content.Intent;
+
+import android.os.Bundle;
+
+import android.view.View;
+
+import android.widget.Button;
+
+import android.widget.EditText;
+
+import android.widget.Toast;
+
+
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import com.google.firebase.database.DatabaseReference;
+
+import com.google.firebase.database.FirebaseDatabase;
+
+
+
+public class Login extends AppCompatActivity {
+
+
+
+    EditText name, age, phone, height;
+
+    Button save, toauth;
+
+
+
+    DatabaseReference reff;
+
+
+
+    Members members;
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+
+
+        members = new Members();
+
+
+
+        name = (TextInputEditText) findViewById(R.id.textName);
+
+        age = (TextInputEditText) findViewById(R.id.textAge);
+
+        phone = (TextInputEditText) findViewById(R.id.textPhone);
+
+        height = (TextInputEditText) findViewById(R.id.textHeight);
+
+
+
+        save = (Button)findViewById(R.id.save);
+
+        toauth = (Button)findViewById(R.id.toauth);
+
+        reff = FirebaseDatabase.getInstance().getReference().child("Members");
+
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View view) {
+
+                int ages = Integer.parseInt(age.getText().toString().trim());
+
+                float heights = Float.parseFloat(height.getText().toString().trim());
+
+                members.setName(name.getText().toString().trim());
+
+                members.setPhone(phone.getText().toString().trim());
+
+                members.setAge(ages);
+
+                members.setHeight(heights);
+
+
+
+                reff.push().setValue(members);
+
+                Toast.makeText(Login.this, "데이터 입력 완료!", Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+
+
+        toauth.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), auth_login.class);
+
+                startActivityForResult(intent, 102);
+
+            }
+
+        });
+
+        Toast.makeText(Login.this, "데이터 베이스 연결 성공", Toast.LENGTH_LONG).show();
+
+    }
+
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>Members.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">package com.example.waily;
+
+
+
+public class Members {
+
+    private String name;
+
+    private int age;
+
+    private String phone;
+
+    private float height;
+
+
+
+    public Members() {
+
+    }
+
+
+
+    public String getName() {
+
+        return name;
+
+    }
+
+
+
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+
+
+
+    public int getAge() {
+
+        return age;
+
+    }
+
+
+
+    public void setAge(int age) {
+
+        this.age = age;
+
+    }
+
+
+
+    public String getPhone() {
+
+        return phone;
+
+    }
+
+
+
+    public void setPhone(String phone) {
+
+        this.phone = phone;
+
+    }
+
+
+
+    public float getHeight() {
+
+        return height;
+
+    }
+
+
+
+    public void setHeight(float height) {
+
+        this.height = height;
+
+    }
+
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>auth_login.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">package com.example.waily;
+
+
+
+import androidx.annotation.NonNull;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
+import android.app.ProgressDialog;
+
+import android.content.Intent;
+
+import android.os.Bundle;
+
+import android.text.TextUtils;
+
+import android.view.View;
+
+import android.widget.Button;
+
+import android.widget.EditText;
+
+import android.widget.ProgressBar;
+
+import android.widget.TextView;
+
+import android.widget.Toast;
+
+
+
+import com.google.android.gms.tasks.OnCompleteListener;
+
+import com.google.android.gms.tasks.Task;
+
+import com.google.firebase.auth.AuthResult;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+
+
+import org.w3c.dom.Text;
+
+
+
+public class auth_login extends AppCompatActivity {
+
+
+
+    private TextView textViewSignup;
+
+    private EditText email_enter, password_enter;
+
+    private Button button_regis;
+
+
+
+    private ProgressDialog progressDialog;
+
+
+
+    private FirebaseAuth firebaseAuth;
+
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_auth_login);
+
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog(this);
+
+        textViewSignup = (TextView) findViewById(R.id.textViewSignin);
+
+        email_enter = (EditText) findViewById(R.id.email_enter);
+
+        password_enter = (EditText) findViewById(R.id.password_enter);
+
+        button_regis = (Button) findViewById(R.id.regis_button);
+
+
+
+        button_regis.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View view) {
+
+                registerUser();
+
+            }
+
+        });
+
+
+
+        textViewSignup.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+
+                startActivityForResult(intent, 101);
+
+            }
+
+        });
+
+
+
+    }
+
+    public void registerUser(){
+
+        String email = email_enter.getText().toString().trim();
+
+        String password = password_enter.getText().toString().trim();
+
+
+
+        if(TextUtils.isEmpty(email)){
+
+            Toast.makeText(this, "이메일을 입력해주세요.", Toast.LENGTH_LONG).show();
+
+            return;
+
+        }
+
+
+
+        if(TextUtils.isEmpty(password)){
+
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_LONG).show();
+
+            return;
+
+        }
+
+
+
+        progressDialog.setMessage("등록하는 중...");
+
+        progressDialog.show();
+
+
+
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                    @Override
+
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+
+                            Toast.makeText(auth_login.this, "가입이 성공적으로 처리되었습니다.", Toast.LENGTH_LONG).show();
+
+                            progressDialog.dismiss();
+
+                        }else{
+
+                            Toast.makeText(auth_login.this, "가입에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_LONG).show();
+
+                            progressDialog.dismiss();
+
+                        }
+
+                    }
+
+                });
+
+
+
+    }
+
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>오늘의 회고</h2>
+						</header>
+						<p>바텀업 관련 앱개발<br>
+							1. 회원가입 화면 만들기(FireBase Authentication 사용)<br>
+							*성공!!*<br>
+							<a href="https://youtu.be/0NFwF7L-YA8">동영상 링크</a><br>
+							이 분의 영상보고 많은 도움을 얻을 수 있었다.<br><br>
+							2. 회원가입 관련 데이터 데이터베이스로 보내기<br>
+							*성공!!*<br>
+							<a href="https://youtu.be/iy6WexahCdY">동영상 링크</a><br>
+							이 분의 영상을 보고 많은 도움을 얻을 수 있었다.<br><br>
+							앱 개발이 처음에는 뭘 해야할지 몰라 강의를 보면서도 졸렸었는데, 점점 뭘 해야할지 알고 그에 해당하는 기능을 찾아 구현하는거에 재미를 붙이니 다시 흥미가 돋고 열정이 솟는다!! 기분좋은 활동이였다.</p>
+						<hr>
+						<h3>※오른쪽 위 메뉴를 클릭하시면 빠르게 다음날 내용을 보실 수 있습니다.</h3>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="highlight/highlight.pack.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+
+	</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Jeaheon's Studio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Jeaheon's Studio</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="..\..\index.html">Home</a></li>
+					<li><a href="#">2019_06_26</a></li>
+					<li><a href="20190703.html">2019_07_03</a></li>
+					<li><a href="20190708.html">2019_07_08</a></li>
+					<li><a href="20190710.html">2019_07_10</a></li>
+					<li><a href="20190813.html">2019_08_13</a></li>
+					<li><a href="20190815.html">2019_08_15</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>2019_06_26 모각코 활동일지</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>오늘의 목표</h2>
+						</header>
+						<p>#1. 초보자를 위한 php200제를 20강부터 30강까지 공부하기.<br>
+							#2. Power Java 13강 기초 컴포넌트 전까지</p>
+						<hr>
+						<header>
+							<h2>FrameTest.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">import javax.swing.*;
+
+public class FrameTest {
+
+	public static void main(String[] args) {
+
+		// TODO Auto-generated method stub
+
+		JFrame f = new JFrame("Frame Test"); //프레임의 제목
+
+		f.setSize(300, 200);				 //프레임 사이즈
+
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Close버튼 누르면 어떻게 되는지
+
+		f.setVisible(true); //프레임을 화면에 나타내기
+
+	}
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>MyFrame.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">import java.awt.FlowLayout;
+
+import javax.swing.*;
+
+
+
+public class MyFrame extends JFrame{
+
+	public MyFrame() {
+
+		setSize(300,200);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		setTitle("MyFrame");
+
+		setVisible(true);
+
+
+
+		setLayout(new FlowLayout());
+
+		JButton button = new JButton("¹öÆ°");
+
+		this.add(button);
+
+		setVisible(true);
+
+	}
+
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>MyFrameTest.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">
+								import java.awt.FlowLayout;
+
+import javax.swing.*;
+
+
+
+public class MyFrameTest{
+
+	public static void main(String args[]) {
+
+		MyFrame f = new MyFrame();
+
+	}
+
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>27-switch-conditino.php</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="php">
+
+  $age = 54;
+
+  switch($age){
+
+    case($age >= 10 && $age <=19):
+
+      echo "10대 입니다.";
+
+    break;
+
+    case($age >=20 && $age <= 29):
+
+      echo "20대 입니다.";
+
+    break;
+
+    case($age >= 30 && $age <= 39):
+
+      echo "30대 입니다.";
+
+    break;
+
+    default:
+
+      echo "ㅋㅋㅋ";
+
+  }
+
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>오늘의 회고</h2>
+						</header>
+						<p>#php는 21~30강까지 잘했고, 자바도 원하는것만큼 해서 기분이 좋았다.</p>
+						<hr>
+						<h3>※오른쪽 위 메뉴를 클릭하시면 빠르게 다음날 내용을 보실 수 있습니다.</h3>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="highlight/highlight.pack.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+
+	</body>
+</html>

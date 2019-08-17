@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Jeaheon's Studio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Jeaheon's Studio</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="..\..\index.html">Home</a></li>
+					<li><a href="20190626.html">2019_06_26</a></li>
+					<li><a href="#">2019_07_03</a></li>
+					<li><a href="20190708.html">2019_07_08</a></li>
+					<li><a href="20190710.html">2019_07_10</a></li>
+					<li><a href="20190813.html">2019_08_13</a></li>
+					<li><a href="20190815.html">2019_08_15</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>2019_07_03 모각코 활동일지</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>오늘의 목표</h2>
+						</header>
+						<p>#안드로이드 앱 개발 강의<br>
+							1.스크롤뷰 사용하기 ~ 3. 토스트와 대화상자<br><br>
+							#시간이 남는다면<br>
+							스택 관련 문제 풀어보기</p>
+						<hr>
+						<header>
+							<h2>MainActivity.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">package com.example.myevent;
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
+import android.os.Bundle;
+
+import android.view.GestureDetector;
+
+import android.view.MotionEvent;
+
+import android.view.View;
+
+import android.widget.TextView;
+
+
+
+import org.w3c.dom.Text;
+
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+
+    TextView textView;
+
+    GestureDetector Detector;
+
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+
+
+        textView = (TextView) findViewById(R.id.textView);
+
+        View view = findViewById(R.id.view);
+
+        view.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+
+            public boolean onTouch(View v, MotionEvent event){
+
+                int action = event.getAction();
+
+
+
+                float curX = event.getX();
+
+                float curY = event.getY();
+
+
+
+                if(action == MotionEvent.ACTION_DOWN){
+
+                    println("손가락 눌렸음 : " + curX + ", " + curY );
+
+                }else if(action == MotionEvent.ACTION_MOVE){
+
+                    println("손가락 움직임 : " + curX + ", " + curY );
+
+                }else if(action == MotionEvent.ACTION_UP){
+
+                    println("손가락 떼졌음 : " + curX + ", " + curY );
+
+                }
+
+
+
+                return true;
+
+            }
+
+
+
+        });
+
+
+
+        Detector = new GestureDetector(this, new GestureDetector.OnGestureListener() {
+
+            @Override
+
+            public boolean onDown(MotionEvent motionEvent) {
+
+                println("onDown() 호출됨");
+
+                return true;
+
+            }
+
+
+
+            @Override
+
+            public void onShowPress(MotionEvent motionEvent) {
+
+                println("onShowPress() 호출됨");
+
+            }
+
+
+
+            @Override
+
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+
+                println("onSingleTapUp() 호출됨");
+
+                return true;
+
+            }
+
+
+
+            @Override
+
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+
+                println("onScroll() 호출됨 "+ v +", "+ v1);
+
+                return true;
+
+            }
+
+
+
+            @Override
+
+            public void onLongPress(MotionEvent motionEvent) {
+
+                println("onLongPress() 호출됨");
+
+            }
+
+
+
+            @Override
+
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+
+                println("onFling() 호출됨 "+v+", "+v1);
+
+                return true;
+
+            }
+
+        });
+
+
+
+        View view2 = findViewById(R.id.view2);
+
+        view2.setOnTouchListener(new View.OnTouchListener(){
+
+            @Override
+
+            public boolean onTouch(View v, MotionEvent event){
+
+                Detector.onTouchEvent(event);
+
+                return true;
+
+
+
+            }
+
+        });
+
+    }
+
+
+
+    public void println(String data){
+
+        textView.append(data + "\n");
+
+    }
+
+}
+
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>오늘의 회고</h2>
+						</header>
+						<p>#﻿안드로이드 앱 개발 강의 1.스크롤뷰 사용하기 ~ 2. 뷰들까지 밖에 못했다.. 시간이 남지 않아서 알고리즘은 못함!.</p>
+						<hr>
+						<h3>※오른쪽 위 메뉴를 클릭하시면 빠르게 다음날 내용을 보실 수 있습니다.</h3>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="highlight/highlight.pack.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+
+	</body>
+</html>
