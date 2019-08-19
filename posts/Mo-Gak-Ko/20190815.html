@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Jeaheon's Studio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Jeaheon's Studio</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="..\..\index.html">Home</a></li>
+					<li><a href="20190626.html">2019_06_26</a></li>
+					<li><a href="20190703.html">2019_07_03</a></li>
+					<li><a href="20190708.html">2019_07_08</a></li>
+					<li><a href="20190710.html">2019_07_10</a></li>
+					<li><a href="20190813.html">2019_08_13</a></li>
+					<li><a href="#">2019_08_15</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>2019_08_15 모각코 활동일지</h1>
+			</div>
+
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>오늘의 목표</h2>
+						</header>
+						<p>백준 단계별로 풀어보기 중 '수학 1' 마무리하기</p>
+						<hr>
+						<header>
+							<h2>카잉달력.java</h2>
+						</header>
+						<pre>
+							<link rel="stylesheet" href="highlight/styles/hybrid.css">
+							<code class="java">import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class 카잉달력_6064 {
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		int test_case = Integer.parseInt(br.readLine());
+		//long start_ = System.currentTimeMillis();
+		for(int i=0; i < test_case; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int M = Integer.parseInt(st.nextToken());
+			int N = Integer.parseInt(st.nextToken());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+
+			long bound = gcd(M, N);
+			int gap = M-N;
+
+			if(gap==0) {
+				if(x==y) {
+					bw.write(x+"\n");
+				}else bw.write(-1+"\n");
+			}else if(gap < 0){
+				gap *= -1;
+
+				boolean flag = true;
+
+				int X;
+				int show = x;
+
+				X = x;
+				while(X!=y) {
+					if(show > bound) {
+						bw.write(-1+"\n");
+						flag = false;
+						break;
+					}
+					X += M;
+					if(X>N) {
+						while(X>N) X -= N;
+					}
+					show += M;
+				}
+				if(flag) bw.write(show+"\n");
+			}else {
+
+				boolean flag = true;
+
+
+				int start_2=0;
+				if(x>y) start_2 = x%N;
+				else start_2 = x;
+
+				if(start_2==0) start_2 = N;
+
+				int show = x;
+
+				while(start_2!=y) {
+					if(show > bound) {
+						bw.write(-1+"\n");
+						flag = false;
+						break;
+					}
+					start_2 += M;
+					if(start_2>N) {
+						while(start_2>N) start_2 -= N;
+					}
+					show += M;
+				}
+				if(flag) bw.write(show+"\n");
+			}
+		}
+		/*
+		long end = System.currentTimeMillis();
+		bw.write("걸린시간 : "+((end-start_)/1000.0)/t);
+		*/
+		bw.flush();
+		br.close();
+		bw.close();
+	}
+
+	public static long gcd(int M, int N) {
+		long s;
+		int O;
+		s = M*N;
+		while(N!=0) {
+			O = M%N;
+			M=N;
+			N=O;
+		}
+		s /= M;
+		return s;
+	}
+}
+							</code>
+						</pre>
+						<hr>
+						<header>
+							<h2>오늘의 회고</h2>
+						</header>
+						<p>#카잉달력만 3일간 풀려고 노력했는데, 결국 풀어서 너무 기분이 좋았다.</p>
+						<hr>
+						<h3>※오른쪽 위 메뉴를 클릭하시면 빠르게 다음날 내용을 보실 수 있습니다.</h3>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="highlight/highlight.pack.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+
+	</body>
+</html>
