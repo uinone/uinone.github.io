@@ -27,7 +27,8 @@
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="..\..\index.html">Home</a></li>
-					<li><a href="OSI 7.html">OSI 7 Layer</a></li>
+					<li><a href="osi7.html">OSI 7 Layer</a></li>
+					<li><a href="#">Building a Network Environment</a></li>
 				</ul>
 			</nav>
 
@@ -41,10 +42,10 @@
 				<div class="inner">
 					<div class="content">
 						<header>
-							<h2>Web WAS DB</h2>
+							<h2>Web WA DB</h2>
 						</header>
 						<p>현재 존재하는 웹서버 들은 모두 제목과 같은 형태를 가지고 서비스를 제공한다고 배웠다.<br><br>
-						각각 Web서버, WAS서버, DB서버인데 웹서버는 서비스를 보여주는 역할을 하고, WAS서버는 DB에서의 데이터를<br><br>
+						각각 Web서버, WA서버, DB서버인데 웹서버는 서비스를 보여주는 역할을 하고, WA서버는 DB에서의 데이터를<br><br>
 						쓰려고 할 때 혹은 그와 비슷한 논리적인 제어들을 담당하는 서버 그리고 DB서버는 데이터를 저장하는 서버이다.<br><br>
 						1학기 때 친구들과 HTML5를 배운적도 있고, 실리콘벨리 연수를 통해 이런 블로그도 작성하게 되었는데<br><br>
 						이런 구조의 웹서버! 나도 해보고싶다..!라는 생각에 이 페이지를 만들게 되었다.</p>
@@ -60,7 +61,7 @@
 							<h2>가상화가 뭐지?</h2>
 						</header>
 						<p>가상화라는 것은 나와 같이 하드웨어적인 고민에서 시작한 것도 하나의 이유지만 다른 이유도 있다.<br><br>
-						행복한 고민을 해보자 진짜 Web, WAS, DB서버가 하드웨어 형태로 존재한다고 말이다.<br><br>
+						행복한 고민을 해보자 진짜 Web, WA, DB서버가 하드웨어 형태로 존재한다고 말이다.<br><br>
 						하드웨어적으로 뭔가 문제가 생기는 건 아니지만 돈이 아깝다는 고민이 생기게 된다.<br><br>
 						자원이 많이 남기 때문이다.<br><br>
 						CPU, 메모리, 스토리지(하드디스크)가 아무리 많이 쓰여도 각각 30%정도만 쓰인다면 당연히 이런 생각들이 들것이다.<br><br>
@@ -79,59 +80,117 @@
  						<header>
  							<h2>만들어보자</h2>
  						</header>
-						<center>
-							<img src="images/v3.jpg" width="50%">
-						</center>
-						<p>집을 뒤져보니 요런 PC가 있어서 여기다가 3개의 서버를 구축하기로 했다.<br><br>
+						<p>집을 뒤져보니 안 쓰는 PC가 있어서 여기다가 3개의 서버를 구축하기로 했다.<br><br>
+							VMware ESXi 6.7.0 설치하려 했으나.. LAN카드 드라이버 문제로인해 잠시 고난을 겪었었다.<br><br>
+							하지만 다행히도 드라이버를 설치하고 무사히 설치할 수 있었다.<br><br>
+							다 설치한 후에는 밋밋하게 버전이름 그리고 컴퓨터 사양이 써져있다.(사진을 넣기엔 폰이 너무 구려서 중요한 부분만 사진을 넣을것이다.)<br><br>
+							사설 네트워크를 구성하기 위해 내가 사용할 IP대역을 설정해주어야한다.<br><br>
+							다음 줄 부터 설명할 내용은 내가 사용하는 노트북의 OS는 윈도우라 윈도우 환경에서만 설명을하려고한다.<br><br>
+							다른 OS는 어떻게 설정하는지 잘 모르나 알게되면 바로 업데이트 할것이다.<br><br>
+							<hr>
+							우선 저 PC와 내 노트북을 LAN선으로 연결해야한다.<br><br>
+							<center>
+								<img src="images/v4.jpg" width="30%">
+								<img src="images/v5.jpg" width="50%">
+							</center>
+							<br><br>
+							나는 LG그램을 쓰고 왼쪽에 보면 2.0타입을 꽂을 수 있어서 이 타입을 지원하는 어뎁터를 구매해 오른쪽 사진과 같이 PC와 노트북을 연결하였다.<br><br>
+							연결 후 <B><U>네트워크 및 공유센터</U></B>를 들어가면 <B><U>기본 네트워크 정보 보기 및 연결 설정</U></B>에 다음과 같이 나와있다.<br><br>
+							<center>
+								<img src="images/v6.png" width="60%">
+							</center>
+							<br><br>
+							이제 저 형광펜되어있는 <B><U>이더넷</U></B>을 클릭하고 <B><U>속성</U></B> --> <B><U>IPv4</U></B>를 클릭하면
+							<center>
+								<img src="images/v7.png" width="40%">
+							</center>
+							<br><br>
+							다음과 같이 자동으로 IP주소 받기라고 되어있을 것이다.<br><br>
+							VMware는 웹으로 가상 서버들을 관리할 수 있으므로 이 웹을 들어가려면 주소를 고정해야한다. 그래야 항상 같은 주소로 들어갈 수 있기때문이다.<br><br>
+							내가 쓰는 IP도 설정하려는 대역에서 고정시켜서 사용하려고 한다.<br><br>
+							따라서 자동으로 IP를 받지말고, 수동으로 받으려고 한다.<br><br>
+							<center>
+								<img src="images/v8.png" width="40%">
+							</center>
+							<br><br>
+							192.1.1.0 / 24 네트워크에서 사용하려고 하며 내 IP는 192.1.1.2로 설정할것이다.<br><br>
+							VMware의 IP는 F2를 눌러 Customize System에서 Configure Management Network<br><br>
+							그리고 IPv4 Configuration, Disable IPv4 configuration for management network 를 Set static IPv4 address and network configuration으로 바꾼 후<br><br>
+							IPv4를 192.1.1.1 서브넷 마스크를 255.255.255.0으로 설정한후 엔터를 눌러주자.<br><br>
+							내 IP는 192.1.1.2 / 24, VMware는 192.1.1.1 / 24 로 설정하게 되었다.(여기서 / 24는 서브넷 마스크를 의미한다.)<br><br>
+							이제 192.1.1.1로 접속해보자.<br><br>
+							<center>
+								<img src="images/v9.png" width="70%">
+							</center>
+							성공적으로 웹페이지가 뜬다.<br><br>
+							이제 접속할 계정의 이름과 비밀번호를 설정한 후 접속하면<br><br>
+							<center>
+								<img src="images/v10.png" width="70%">
+							</center>
+							<br><br>
+							이렇게 되어있다. 오른쪽 위를 보면 PC의 사양도 나오고, 착한 학생으로써 평가판을 사용한다는 참된 문구도 쓰여있다.<br><br>
+							왼쪽에서 <B><U>가상시스템</U></B>을 클릭하고 <B><U>VM생성/등록</U></B>을 누르면 가상 서버를 생성할 수 있다.<br><br>
+							이제 위에서 했었던 가상화의 개념에 따라 가상 서버를 생성하면 된다.<br><br>
+							나같은 경우에는 스토리지는 전부 50GB로 주었고 메모리는 8GB중 Web이 가장 메모리를 적게 쓸것같아서 1GB 나머지는 2GB를 할당했다.<br><br>
+							CPU는 1코짜리 2개가 있는데 웹은 1개만 나머지는 2개모두 쓰도록 했다.<br><br>
+							여기서 한가지 의문이 들 수 있다.<br><br>
+							엥 CPU를 저렇게 할당하면 전부 5개를 쓴다는 소리인데 그게 되는건가?<br><br>
+							CPU의 계산속도를 생각해보면 충분히 가능한 일이다. 워낙 빠르기때문에 각 서버당 2개씩 할당할 수 있는것이다.<br><br>
+							OS는 3개의 서버 모두 CentOS 7.3버전을 설치했다.<br><br>
+							이로써 성공적으로 하나의 PC에서 3개의 가상 서버를 생성할 수 있었다.<br><br>
 						</p>
 						<hr>
 						<header>
 							<h2>정리</h2>
 						</header>
-						<p>신난다.</p>
+						<p>
+							가상화라니 사실 처음에는 꽤나 먼 이야기인줄 알았으나 직접 자료를 찾아보고 환경을 구성해보니 너무 재미있었다.<br><br>
+							이제 이 환경을 가지고 네트워크를 공부할 수있을것 같아 설레기도 한다.<br><br>
+							신난다.<br><br>
+							마지막 업데이트 [19.08.31]
+						</p>
 					</div>
 				</div>
 			</section>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<div class="content">
-						<section>
-							<h3>Accumsan montes viverra</h3>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
-						</section>
-						<section>
-							<h4>Sem turpis amet semper</h4>
-							<ul class="alt">
-								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
-								<li><a href="#">Etiam vel lorem sed amet.</a></li>
-								<li><a href="#">Felis enim feugiat viverra.</a></li>
-								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
-							</ul>
-						</section>
-						<section>
-							<h4>Magna sed ipsum</h4>
-							<ul class="plain">
-								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-							</ul>
-						</section>
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<div class="content">
+							<section>
+								<h3>To you who scrolled to the end</h3>
+								<p>The language written in the red box right above is German. 20190806 is a meaningful day for me. Because it's an inflection point in my life. Originally, I thought it was life for me to get a job in Korea and die while making money before I die. But after I went to Silicon Valley, I changed my mind. The United States really wanted to work in every country, not America. I want to live happily in various companies. I'll do anything for freedom. I'm looking for someone to run with me. Anyway, thank you for scrolling to the end. Have a good day.</p>
+							</section>
+							<section>
+								<h4>Favorite artist</h4>
+								<ul class="alt">
+									<li><a href="#">Jinhwan Jeong</a></li>
+									<li><a href="#">Seonyoung Lee</a></li>
+									<li><a href="#">Blackskirt</a></li>
+									<li><a href="#">E-sens</a></li>
+								</ul>
+							</section>
+							<section>
+								<h4>If you want to know me more</h4>
+								<ul class="plain">
+									<li><a href="https://www.facebook.com/profile.php?id=100033070009311"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+									<li><a href="https://www.instagram.com/j_he0n/"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+									<li><a href="https://github.com/JayJay-H"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+								</ul>
+							</section>
+						</div>
+						<div class="copyright">
+							&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+						</div>
 					</div>
-					<div class="copyright">
-						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
-					</div>
-				</div>
-			</footer>
+				</footer>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<!-- Scripts -->
+				<script src="assets/js/jquery.min.js"></script>
+				<script src="assets/js/browser.min.js"></script>
+				<script src="assets/js/breakpoints.min.js"></script>
+				<script src="assets/js/util.js"></script>
+				<script src="assets/js/main.js"></script>
 
-	</body>
-</html>
+		</body>
+	</html>
